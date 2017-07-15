@@ -64,6 +64,15 @@ public class MainActivity extends AppCompatActivity {
         });
         set.start();
 
+        ValueAnimator xmlAnimator = (ValueAnimator) AnimatorInflater.loadAnimator(this, R.animator.animator);
+        xmlAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                float animatedValue = (float) valueAnimator.getAnimatedValue();
+                textView.setTranslationX(animatedValue);
+            }
+        });
+
 //        ValueAnimator animation = ValueAnimator.ofFloat(0f, 100f);
 //        animation.setDuration(1000);
 //        animation.start();

@@ -12,6 +12,7 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.FloatProperty;
+import android.util.Log;
 import android.util.Property;
 import android.view.View;
 import android.widget.Button;
@@ -37,38 +38,39 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button = (Button) findViewById(R.id.button);
+//        button = (Button) findViewById(R.id.button);
 
-        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.animator_set);
-        set.setTarget(button);
-        set.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                Toast.makeText(MainActivity.this, "start", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                Toast.makeText(MainActivity.this, "end", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                Toast.makeText(MainActivity.this, "cancel", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-                Toast.makeText(MainActivity.this, "repeat", Toast.LENGTH_SHORT).show();
-            }
-        });
-        set.start();
+//        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.animator_set);
+//        set.setTarget(button);
+//        set.addListener(new Animator.AnimatorListener() {
+//            @Override
+//            public void onAnimationStart(Animator animator) {
+//                Toast.makeText(MainActivity.this, "start", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onAnimationEnd(Animator animator) {
+//                Toast.makeText(MainActivity.this, "end", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onAnimationCancel(Animator animator) {
+//                Toast.makeText(MainActivity.this, "cancel", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onAnimationRepeat(Animator animator) {
+//                Toast.makeText(MainActivity.this, "repeat", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        set.start();
 
         ValueAnimator xmlAnimator = (ValueAnimator) AnimatorInflater.loadAnimator(this, R.animator.animator);
         xmlAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
                 float animatedValue = (float) valueAnimator.getAnimatedValue();
+                Log.d("update value", "" + animatedValue);
                 textView.setTranslationX(animatedValue);
             }
         });

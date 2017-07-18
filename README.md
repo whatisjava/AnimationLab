@@ -22,4 +22,5 @@ View动画是只能被用在View上的旧系统，你可以使用view动画系�
 
 ### Drawable动画
 
-依次显示Drawable资源
+依次显示Drawable资源，可在代码中使用AnimationDrawable类或者在直接在xml中定义，这种动画类型的xml属于
+res/drawable目录下

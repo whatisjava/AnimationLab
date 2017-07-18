@@ -23,4 +23,8 @@ View动画是只能被用在View上的旧系统，你可以使用view动画系�
 ### Drawable动画
 
 依次显示Drawable资源，可在代码中使用AnimationDrawable类或者在直接在xml中定义，这种动画类型的xml属于
-res/drawable目录下
+res/drawable目录下，It's important to note that the start() method called on the AnimationDrawable 
+cannot be called during the onCreate() method of your Activity, because the AnimationDrawable is not
+ yet fully attached to the window. If you want to play the animation immediately, without requiring 
+ interaction, then you might want to call it from the onWindowFocusChanged() method in your Activity, 
+ which will get called when Android brings your window into focus.

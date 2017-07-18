@@ -1,6 +1,9 @@
 package com.showtoyou.animationlab;
 
+import android.animation.Animator;
 import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.os.Build;
@@ -13,10 +16,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static android.R.attr.button;
+import static android.R.attr.text;
+
 public class PropertyAnimationActivity extends AppCompatActivity {
 
     private TextView textView;
-    private Button button;
 
     @TargetApi(Build.VERSION_CODES.N)
     @Override
@@ -32,10 +37,8 @@ public class PropertyAnimationActivity extends AppCompatActivity {
             }
         });
 
-//        button = (Button) findViewById(R.id.button);
-
 //        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.animator_set);
-//        set.setTarget(button);
+//        set.setTarget(textView);
 //        set.addListener(new Animator.AnimatorListener() {
 //            @Override
 //            public void onAnimationStart(Animator animator) {
@@ -59,15 +62,15 @@ public class PropertyAnimationActivity extends AppCompatActivity {
 //        });
 //        set.start();
 
-        ValueAnimator xmlAnimator = (ValueAnimator) AnimatorInflater.loadAnimator(this, R.animator.animator);
-        xmlAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                float animatedValue = (float) valueAnimator.getAnimatedValue();
-                Log.d("update value", "" + animatedValue);
-                textView.setTranslationX(animatedValue);
-            }
-        });
+//        ValueAnimator xmlAnimator = (ValueAnimator) AnimatorInflater.loadAnimator(this, R.animator.animator);
+//        xmlAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//            @Override
+//            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+//                float animatedValue = (float) valueAnimator.getAnimatedValue();
+//                Log.d("update value", "" + animatedValue);
+//                textView.setTranslationX(animatedValue);
+//            }
+//        });
 
 //        ValueAnimator animation = ValueAnimator.ofFloat(0f, 100f);
 //        animation.setDuration(1000);
@@ -82,17 +85,17 @@ public class PropertyAnimationActivity extends AppCompatActivity {
 //            }
 //        });
 
-//        ObjectAnimator animator = ObjectAnimator.ofFloat(textView, translationX, 100f);
-//        animator.setDuration(1000);
-//        animator.start();
-//
-//        ObjectAnimator animator1 = ObjectAnimator.ofFloat(textView, translationX, 0f);
-//        animator.setDuration(1000);
-//        animator.start();
+        ObjectAnimator animator = ObjectAnimator.ofFloat(textView, translationX, 100f);
+        animator.setDuration(1000);
+        animator.start();
 
-//        AnimatorSet animatorSet = new AnimatorSet();
-//        animatorSet.play(animator).before(animator1);
-//        animatorSet.start();
+        ObjectAnimator animator1 = ObjectAnimator.ofFloat(textView, translationX, 0f);
+        animator.setDuration(1000);
+        animator.start();
+
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.play(animator).before(animator1);
+        animatorSet.start();
 
 //        Keyframe kf0 = Keyframe.ofFloat(0f, 0f);
 //        Keyframe kf1 = Keyframe.ofFloat(.5f, 360f);

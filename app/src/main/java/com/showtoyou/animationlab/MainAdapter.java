@@ -42,7 +42,7 @@ public class MainAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder orderHolder;
         if (convertView == null) {
-            convertView = mLayoutInflater.inflate(R.layout.item_recycler_view, parent, false);
+            convertView = mLayoutInflater.inflate(R.layout.item_main, parent, false);
             orderHolder = new ViewHolder();
             orderHolder.textView = convertView.findViewById(R.id.text_view);
             orderHolder.imageView = convertView.findViewById(R.id.image_view);

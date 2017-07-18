@@ -22,7 +22,7 @@ public class PropertyAnimationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_property_animation);
 
         textView = (TextView) findViewById(R.id.text_view);
         textView.setOnClickListener(new View.OnClickListener() {

@@ -21,6 +21,7 @@ import static android.R.attr.text;
 
 public class PropertyAnimationActivity extends AppCompatActivity {
 
+    private ValueAnimator animation;
     private TextView textView;
 
     @TargetApi(Build.VERSION_CODES.N)
@@ -72,30 +73,47 @@ public class PropertyAnimationActivity extends AppCompatActivity {
 //            }
 //        });
 
-//        ValueAnimator animation = ValueAnimator.ofFloat(0f, 100f);
+//        ValueAnimator animation = ValueAnimator.ofFloat(0, 100);
 //        animation.setDuration(1000);
 //        animation.start();
 //        animation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 //            @Override
 //            public void onAnimationUpdate(ValueAnimator valueAnimator) {
 //                float animatedValue = (float) valueAnimator.getAnimatedValue();
+//                Log.d("update", "current value is " + animatedValue);
 //                textView.setTranslationX(animatedValue);
 //                textView.setTranslationY(animatedValue);
 //                textView.setTranslationZ(animatedValue);
 //            }
 //        });
 
-        ObjectAnimator animator = ObjectAnimator.ofFloat(textView, translationX, 100f);
-        animator.setDuration(1000);
-        animator.start();
+        animation = ValueAnimator.ofInt(0, 100);
+        animation.setDuration(1000);
+        animation.setRepeatCount(ValueAnimator.INFINITE);
+        animation.setRepeatMode(ValueAnimator.REVERSE);
+        animation.start();
+        animation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                int animatedValue = (int) valueAnimator.getAnimatedValue();
+                Log.d("update", "current value is " + animatedValue);
+                textView.setTranslationX(animatedValue);
+                textView.setTranslationY(animatedValue);
+                textView.setTranslationZ(animatedValue);
+            }
+        });
 
-        ObjectAnimator animator1 = ObjectAnimator.ofFloat(textView, translationX, 0f);
-        animator.setDuration(1000);
-        animator.start();
-
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.play(animator).before(animator1);
-        animatorSet.start();
+//        ObjectAnimator animator = ObjectAnimator.ofFloat(textView, translationX, 100f);
+//        animator.setDuration(1000);
+//        animator.start();
+//
+//        ObjectAnimator animator1 = ObjectAnimator.ofFloat(textView, translationX, 0f);
+//        animator.setDuration(1000);
+//        animator.start();
+//
+//        AnimatorSet animatorSet = new AnimatorSet();
+//        animatorSet.play(animator).before(animator1);
+//        animatorSet.start();
 
 //        Keyframe kf0 = Keyframe.ofFloat(0f, 0f);
 //        Keyframe kf1 = Keyframe.ofFloat(.5f, 360f);
@@ -142,4 +160,10 @@ public class PropertyAnimationActivity extends AppCompatActivity {
         }
     };
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        animation.cancel();
+    }
 }

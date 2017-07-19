@@ -44,8 +44,8 @@ public class MainAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = mLayoutInflater.inflate(R.layout.item_main, parent, false);
             orderHolder = new ViewHolder();
-            orderHolder.textView = convertView.findViewById(R.id.text_view);
-            orderHolder.imageView = convertView.findViewById(R.id.image_view);
+            orderHolder.textView = (TextView) convertView.findViewById(R.id.text_view);
+            orderHolder.imageView = (ImageView) convertView.findViewById(R.id.image_view);
             convertView.setTag(orderHolder);
         } else {
             orderHolder = (ViewHolder) convertView.getTag();

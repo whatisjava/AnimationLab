@@ -8,6 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by whatisjava on 17-7-18.
@@ -33,6 +34,7 @@ public class ViewAnimationActivity extends AppCompatActivity implements View.OnC
         rotate.setOnClickListener(this);
 
         textView = (TextView) findViewById(R.id.text_view);
+        textView.setOnClickListener(this);
 
     }
 
@@ -55,7 +57,8 @@ public class ViewAnimationActivity extends AppCompatActivity implements View.OnC
                 Animation rotate = AnimationUtils.loadAnimation(this, R.anim.rotate);
                 textView.startAnimation(rotate);
                 break;
-
+            case R.id.text_view:
+                Toast.makeText(this, "点中了", Toast.LENGTH_SHORT).show();
         }
     }
 }
